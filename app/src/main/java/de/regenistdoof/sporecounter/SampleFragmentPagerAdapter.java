@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 2;
-    private String tabTitles[] = new String[] { "Tab1", "Tab2"};
+    private String tabTitles[] = new String[] { "Counter", "Calculations"};
     private Context context;
 
     public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
@@ -22,7 +22,16 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return PageFragment.newInstance(position + 1);
+
+        if (position == 0){
+            FragmentCounter fragCount = new FragmentCounter();
+            return fragCount;
+        }
+        else {
+            return PageFragment.newInstance(position + 1);
+        }
+
+
     }
 
     @Override
