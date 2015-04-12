@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Spore Counter</string>
 
-    <string name="counter_default">0</string>
+    <string name="counter_default">Tap screen to start counting</string>
     <string name="action_settings">Settings</string>
 
 <!-- TODO: Remove or change this placeholder text -->

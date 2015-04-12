@@ -32,7 +32,10 @@ public class PageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab, container, false);
         TextView textView = (TextView) view;
-        textView.setText("Fragment #" + mPage);
+
+
+
+        textView.setText("Fragment #");
         return view;
     }
 }
