@@ -1,5 +1,6 @@
 package de.regenistdoof.sporecounter;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,13 +15,30 @@ import android.widget.TextView;
 // In this case, the fragment displays simple text based on the page
 public class FragmentCounter extends Fragment implements View.OnClickListener,GestureDetector.OnGestureListener{
 
-int count = 0;
-TextView counter;
-LinearLayout layout;
-View view;
-boolean swipe = false;
-String TAG = "sporecounter";
+    public interface CounterValueListener {
+        public void onCounterIncrement(int count);
+    }
 
+private int page;
+
+    public static FragmentCounter newInstance(int page) {
+        FragmentCounter fragCount = new FragmentCounter();
+        Bundle args = new Bundle();
+        fragCount.setArguments(args);
+        return fragCount;
+    }
+
+    int count = 0;
+    TextView counter;
+    LinearLayout layout;
+    View view;
+    boolean swipe = false;
+    String TAG = "sporecounter";
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
 
     @Override
@@ -28,7 +46,6 @@ String TAG = "sporecounter";
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_counter, container, false);
-
         layout = (LinearLayout) view.findViewById(R.id.layout);
         layout.setOnClickListener(this);
 
@@ -82,6 +99,19 @@ String TAG = "sporecounter";
         return view;
     }
 
+    CounterValueListener counterValueListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            counterValueListener = (CounterValueListener) activity;
+
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement onButtonPressed");
+        }
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -91,6 +121,10 @@ String TAG = "sporecounter";
          } else {
              count++;
              counter.setText(Integer.toString(count));
+             counterValueListener.onCounterIncrement(count);
+
+
+
          }
      }
 

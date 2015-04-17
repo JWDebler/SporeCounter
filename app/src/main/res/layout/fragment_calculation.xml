@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This is the fragment  to be displayed for a section associated with a tab -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout"
+    android:padding="10dp">
+
+    <EditText
+        android:id="@+id/counted_cells"
+        android:text="@string/counted_cells_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp"
+        android:inputType="number"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_calculate"
+        android:id="@+id/calculate"
+        android:layout_below="@+id/tvSquares"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/number_of_squares"
+        android:text="@string/number_of_squares_default"
+        android:textSize="20sp"
+        android:layout_below="@+id/counted_cells"
+        android:layout_alignLeft="@+id/counted_cells"
+        android:layout_alignStart="@+id/counted_cells"
+        android:inputType="number" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/result_default"
+        android:id="@+id/result"
+        android:textSize="30sp"
+        android:layout_alignBottom="@+id/calculate"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Counted: "
+        android:id="@+id/tvCounted"
+        android:textSize="15sp"
+        android:layout_above="@+id/number_of_squares"
+        android:layout_alignLeft="@+id/tvSquares"
+        android:layout_alignStart="@+id/tvSquares" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="# of squares counted: "
+        android:id="@+id/tvSquares"
+        android:textSize="15sp"
+        android:layout_alignBottom="@+id/number_of_squares"
+        android:layout_alignLeft="@+id/calculate"
+        android:layout_alignStart="@+id/calculate" />
+
+
+</RelativeLayout>

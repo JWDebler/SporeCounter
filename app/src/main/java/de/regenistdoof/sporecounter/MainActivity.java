@@ -1,14 +1,16 @@
 package de.regenistdoof.sporecounter;
 
+import android.app.FragmentManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 
-
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements FragmentCounter.CounterValueListener{
 
     ViewPager viewPager;
 
@@ -20,6 +22,7 @@ public class MainActivity extends FragmentActivity {
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         viewPager = (ViewPager) findViewById(R.id.viewpager);
+
         viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(),
                 MainActivity.this));
 
@@ -55,5 +58,10 @@ public class MainActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    public void onCounterIncrement(int count) {
+        Log.d("sporecounter", "MainActivity: " + count);
+    }
 
 }

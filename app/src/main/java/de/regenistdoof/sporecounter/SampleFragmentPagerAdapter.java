@@ -4,10 +4,14 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
-public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
+public class SampleFragmentPagerAdapter extends FragmentStatePagerAdapter {
+
+
     final int PAGE_COUNT = 2;
-    private String tabTitles[] = new String[] { "Counter", "Calculations"};
+    private String tabTitles[] = new String[]{"Counter", "Calculations"};
     private Context context;
 
     public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
@@ -22,21 +26,24 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-
-        if (position == 0){
-            FragmentCounter fragCount = new FragmentCounter();
-            return fragCount;
-        }
-        else {
-            return PageFragment.newInstance(position + 1);
+        switch (position) {
+            case 0:
+                return FragmentCounter.newInstance(0);
+            case 1:
+                return FragmentCalculations.newInstance(1);
+            default:
+                return null;
         }
 
 
     }
+
+
 
     @Override
     public CharSequence getPageTitle(int position) {
         // Generate title based on item position
         return tabTitles[position];
     }
+
 }
