@@ -15,16 +15,9 @@ import android.widget.TextView;
 // In this case, the fragment displays simple text based on the page
 public class FragmentCounter extends Fragment implements View.OnClickListener,GestureDetector.OnGestureListener{
 
-    public interface CounterValueListener {
-        public void onCounterIncrement(int count);
-    }
-
-private int page;
 
     public static FragmentCounter newInstance(int page) {
         FragmentCounter fragCount = new FragmentCounter();
-        Bundle args = new Bundle();
-        fragCount.setArguments(args);
         return fragCount;
     }
 
@@ -42,47 +35,37 @@ private int page;
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_counter, container, false);
         layout = (LinearLayout) view.findViewById(R.id.layout);
         layout.setOnClickListener(this);
-
         counter = (TextView) view.findViewById(R.id.counter);
 
         final GestureDetector gesture = new GestureDetector(getActivity(),
                 new GestureDetector.SimpleOnGestureListener() {
 
-
                     @Override
                     public boolean onSingleTapUp(MotionEvent e) {
-
                         return false;
                     }
 
                     @Override
-                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-                                           float velocityY) {
+                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 
                         final int SWIPE_MIN_DISTANCE = 300;
 
-                        try {
+                        try {   //swipe up
                             if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MIN_DISTANCE && e1.getY() > e2.getY()){
                                 Log.d(TAG, "swipe up");
-                                count = 0;
-                                swipe = true;
-                                counter.setText(Integer.toString(count));
-                            }
+                                resetCounter();
+                            }   //swipe down
                             else if ((Math.abs(e1.getY() - e2.getY()) > SWIPE_MIN_DISTANCE && e2.getY() > e1.getY())){
                                 Log.d(TAG, "swipe down");
-                                count = 0;
-                                swipe = true;
-                                counter.setText(Integer.toString(count));
+                                resetCounter();
                             }
 
                         } catch (Exception e) {
-                            // nothing
                         }
                         return super.onFling(e1, e2, velocityX, velocityY);
                     }
@@ -94,22 +77,19 @@ private int page;
                 return gesture.onTouchEvent(event);
             }
         });
-
-
         return view;
     }
-
-    CounterValueListener counterValueListener;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        try {
-            counterValueListener = (CounterValueListener) activity;
+    }
 
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement onButtonPressed");
-        }
+    public void resetCounter(){
+        count = 0;
+        swipe = true;
+        counter.setText(Integer.toString(count));
+        ((MainActivity)getActivity()).setLastCount(count);
     }
 
     @Override
@@ -121,10 +101,7 @@ private int page;
          } else {
              count++;
              counter.setText(Integer.toString(count));
-             counterValueListener.onCounterIncrement(count);
-
-
-
+             ((MainActivity)getActivity()).setLastCount(count);
          }
      }
 

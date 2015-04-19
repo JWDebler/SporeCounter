@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 // In this case, the fragment displays simple text based on the page
 public class FragmentCalculations extends Fragment{
-    private int page;
 
+    private int newValue = 0;
 
     EditText numberOfSquaresRef, countedCellsRef;
     TextView resultRef;
@@ -21,9 +21,6 @@ public class FragmentCalculations extends Fragment{
 
     public static FragmentCalculations newInstance(int page) {
         FragmentCalculations fragCalc = new FragmentCalculations();
-        Bundle args = new Bundle();
-        args.putInt("page", page);
-        fragCalc.setArguments(args);
         return fragCalc;
     }
 
@@ -35,8 +32,8 @@ public class FragmentCalculations extends Fragment{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_calculation, container, false);
         resultRef = (TextView) view.findViewById(R.id.result);
         numberOfSquaresRef = (EditText) view.findViewById(R.id.number_of_squares);
@@ -44,21 +41,21 @@ public class FragmentCalculations extends Fragment{
         calculate = (Button) view.findViewById(R.id.calculate);
 
 
-        calculate.setOnClickListener(new View.OnClickListener() {
+calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String numberOfSquaresStr = numberOfSquaresRef.getText().toString();
-                String countedCellsStr = countedCellsRef.getText().toString();
-                String resultStr = "0";
-                int result = Integer.parseInt(numberOfSquaresStr) + Integer.parseInt(countedCellsStr);
+                newValue = ((MainActivity)getActivity()).getLastcount();
+                Log.d("sporecounter", "fragcalc value: " + newValue);
+
+                int numberOfSquares = Integer.parseInt(numberOfSquaresRef.getText().toString());
+                int countedCells = Integer.parseInt(countedCellsRef.getText().toString());
+
+                int result = numberOfSquares + countedCells;
                 resultRef.setText("" + result);
             }
         });
 
-
         return view;
     }
-
-
 }
 

@@ -1,19 +1,25 @@
 package de.regenistdoof.sporecounter;
 
-import android.app.FragmentManager;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 
 
-public class MainActivity extends FragmentActivity implements FragmentCounter.CounterValueListener{
+public class MainActivity extends FragmentActivity {
 
     ViewPager viewPager;
 
+    private int lastCount;
+
+    public int getLastcount() {
+        return this.lastCount;
+    }
+
+    public void setLastCount(int newValue){
+        this.lastCount = newValue;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +62,6 @@ public class MainActivity extends FragmentActivity implements FragmentCounter.Co
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    @Override
-    public void onCounterIncrement(int count) {
-        Log.d("sporecounter", "MainActivity: " + count);
     }
 
 }

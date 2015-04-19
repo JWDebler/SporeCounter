@@ -7,6 +7,17 @@
     android:id="@+id/layout"
     android:padding="10dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Counted: "
+        android:id="@+id/tvCounted"
+        android:textSize="15sp"
+        android:layout_alignBaseline="@+id/counted_cells"
+        android:layout_alignBottom="@+id/counted_cells"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <EditText
         android:id="@+id/counted_cells"
         android:text="@string/counted_cells_default"
@@ -17,16 +28,10 @@
         android:textSize="20sp"
         android:inputType="number"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:width="60dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_calculate"
-        android:id="@+id/calculate"
-        android:layout_below="@+id/tvSquares"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+
 
     <EditText
         android:layout_width="wrap_content"
@@ -37,7 +42,28 @@
         android:layout_below="@+id/counted_cells"
         android:layout_alignLeft="@+id/counted_cells"
         android:layout_alignStart="@+id/counted_cells"
-        android:inputType="number" />
+        android:inputType="number"
+        android:width="60dp"
+        android:gravity="center" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="# of squares counted: "
+        android:id="@+id/tvSquares"
+        android:textSize="15sp"
+        android:layout_alignBaseline="@+id/number_of_squares"
+        android:layout_alignBottom="@+id/number_of_squares"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_calculate"
+        android:id="@+id/calculate"
+        android:layout_below="@+id/number_of_squares"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,28 +71,14 @@
         android:text="@string/result_default"
         android:id="@+id/result"
         android:textSize="30sp"
-        android:layout_alignBottom="@+id/calculate"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignBaseline="@+id/calculate"
+        android:layout_centerHorizontal="true"
+        android:width="60dp"
+        android:gravity="center" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Counted: "
-        android:id="@+id/tvCounted"
-        android:textSize="15sp"
-        android:layout_above="@+id/number_of_squares"
-        android:layout_alignLeft="@+id/tvSquares"
-        android:layout_alignStart="@+id/tvSquares" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="# of squares counted: "
-        android:id="@+id/tvSquares"
-        android:textSize="15sp"
-        android:layout_alignBottom="@+id/number_of_squares"
-        android:layout_alignLeft="@+id/calculate"
-        android:layout_alignStart="@+id/calculate" />
+
+
 
 
 </RelativeLayout>
