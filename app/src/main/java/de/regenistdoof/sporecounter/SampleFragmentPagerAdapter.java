@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 public class SampleFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
 
-    final int PAGE_COUNT = 2;
-    private String tabTitles[] = new String[]{"Counter", "Calculations"};
+    final int PAGE_COUNT = 3;
+    private String tabTitles[] = new String[]{"Counter", "Calculations", "Results"};
     private Context context;
 
     public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
@@ -31,6 +31,8 @@ public class SampleFragmentPagerAdapter extends FragmentStatePagerAdapter {
                 return FragmentCounter.newInstance(0);
             case 1:
                 return FragmentCalculations.newInstance(1);
+            case 2:
+                return FragmentResults.newInstance(2);
             default:
                 return null;
         }
@@ -45,23 +47,6 @@ public class SampleFragmentPagerAdapter extends FragmentStatePagerAdapter {
     }
 
 
-    SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
 
-    @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        Fragment fragment = (Fragment) super.instantiateItem(container, position);
-        registeredFragments.put(position, fragment);
-        return fragment;
-    }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        registeredFragments.remove(position);
-        super.destroyItem(container, position, object);
-    }
-
-    public Fragment getRegisteredFragment(int position) {
-        return registeredFragments.get(position);
-    }
 
 }

@@ -1,84 +1,168 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- This is the fragment  to be displayed for a section associated with a tab -->
+<?xml version="1.0" encoding="utf-8"?><!-- This is the fragment  to be displayed for a section associated with a tab -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
     android:padding="10dp">
 
+
     <TextView
+        android:id="@+id/tvCounted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Counted: "
-        android:id="@+id/tvCounted"
+        android:layout_gravity="fill_vertical|right"
+        android:text="@string/counted_cells"
         android:textSize="15sp"
-        android:layout_alignBaseline="@+id/counted_cells"
-        android:layout_alignBottom="@+id/counted_cells"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_toStartOf="@+id/counted_cells"
+        android:layout_alignBaseline="@+id/counted_cells" />
+
+    <TextView
+        android:id="@+id/tvDilution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical|right"
+        android:gravity="center"
+        android:text="@string/dilution_factor"
+        android:textSize="15sp"
+        android:layout_alignParentStart="false"
+        android:layout_toStartOf="@+id/dilution_factor"
+        android:layout_alignBaseline="@+id/dilution_factor"
+        android:layout_below="@+id/tvCounted" />
+
+    <TextView
+        android:id="@+id/tvSquares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical|right"
+        android:gravity="center"
+        android:text="@string/counted_squares"
+        android:textSize="15sp"
+        android:layout_alignParentStart="false"
+        android:layout_toStartOf="@+id/number_of_squares"
+        android:layout_alignBaseline="@+id/number_of_squares"
+        android:layout_below="@+id/tvDilution" />
+
+    <TextView
+        android:id="@+id/result_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical|right"
+        android:gravity="center"
+        android:text="@string/result_text"
+        android:textSize="20sp"
+        android:layout_toStartOf="@+id/result"
+        android:layout_alignBaseline="@+id/result" />
+
+    <Button
+        android:id="@+id/calculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/button_calculate"
+        android:layout_below="@+id/number_of_squares"
+        android:layout_centerHorizontal="true" />
+
 
     <EditText
         android:id="@+id/counted_cells"
-        android:text="@string/counted_cells_default"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical"
+        android:width="60dp"
         android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:textSize="20sp"
         android:inputType="number"
-        android:layout_alignParentTop="true"
+        android:text="@string/counted_cells_default"
+        android:textSize="20sp"
         android:layout_centerHorizontal="true"
-        android:width="60dp" />
-
-
+        android:selectAllOnFocus="true" />
 
     <EditText
+        android:id="@+id/dilution_factor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical"
+        android:width="60dp"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="@string/dilution_factor_default"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/counted_cells"
+        android:selectAllOnFocus="true" />
+
+    <EditText
         android:id="@+id/number_of_squares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical"
+        android:width="60dp"
+        android:gravity="center"
+        android:inputType="number"
         android:text="@string/number_of_squares_default"
         android:textSize="20sp"
-        android:layout_below="@+id/counted_cells"
-        android:layout_alignLeft="@+id/counted_cells"
-        android:layout_alignStart="@+id/counted_cells"
-        android:inputType="number"
-        android:width="60dp"
-        android:gravity="center" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/dilution_factor"
+        android:selectAllOnFocus="true" />
+
     <TextView
+        android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="# of squares counted: "
-        android:id="@+id/tvSquares"
+        android:layout_gravity="center"
+        android:width="100dp"
+        android:gravity="center"
+        android:text="@string/result_default"
+        android:textSize="20sp"
+        android:layout_below="@+id/calculate"
+        android:layout_centerHorizontal="true"
+        android:digits="3"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical|right"
+        android:gravity="center"
+        android:text="@string/unit"
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/result"
+        android:layout_alignBaseline="@+id/result"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/dilution_factor_explanation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical|right"
+        android:gravity="center"
+        android:text="@string/dilution_factor_explanation"
         android:textSize="15sp"
-        android:layout_alignBaseline="@+id/number_of_squares"
-        android:layout_alignBottom="@+id/number_of_squares"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignBaseline="@+id/dilution_factor"
+        android:layout_toEndOf="@id/dilution_factor" />
+
+    <TextView
+        android:id="@+id/number_of_squares_explanation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical|right"
+        android:gravity="center"
+        android:text="@string/number_of_squares_explanation"
+        android:textSize="15sp"
+        android:layout_toEndOf="@id/number_of_squares"
+        android:layout_alignBaseline="@+id/number_of_squares" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_calculate"
-        android:id="@+id/calculate"
-        android:layout_below="@+id/number_of_squares"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/result_default"
-        android:id="@+id/result"
-        android:textSize="30sp"
-        android:layout_alignBaseline="@+id/calculate"
-        android:layout_centerHorizontal="true"
-        android:width="60dp"
-        android:gravity="center" />
-
-
-
-
+        android:text="Add to List"
+        android:id="@+id/addToList"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

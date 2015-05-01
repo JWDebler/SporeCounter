@@ -14,10 +14,12 @@ import android.widget.TextView;
 public class FragmentCalculations extends Fragment{
 
 
-    public static EditText numberOfSquaresRef, countedCellsRef;
+    public static EditText numberOfSquaresRef, countedCellsRef, dilutionRef;
     TextView resultRef;
     Button calculate;
     String TAG = "sporecounter";
+    final double ten_k = 10000;
+
 
 
 
@@ -40,6 +42,7 @@ public class FragmentCalculations extends Fragment{
         resultRef = (TextView) view.findViewById(R.id.result);
         numberOfSquaresRef = (EditText) view.findViewById(R.id.number_of_squares);
         countedCellsRef = (EditText) view.findViewById(R.id.counted_cells);
+        dilutionRef = (EditText) view.findViewById(R.id.dilution_factor);
         calculate = (Button) view.findViewById(R.id.calculate);
 
         calculate.setOnClickListener(new View.OnClickListener() {
@@ -50,9 +53,10 @@ public class FragmentCalculations extends Fragment{
 
                 int numberOfSquares = Integer.parseInt(numberOfSquaresRef.getText().toString());
                 int countedCells = Integer.parseInt(countedCellsRef.getText().toString());
-
-                int result = numberOfSquares + countedCells;
-                resultRef.setText("" + result);
+                int dilutionFactor = Integer.parseInt(dilutionRef.getText().toString());
+                double concentration = ((countedCells * ten_k)/ (numberOfSquares * dilutionFactor))/10000;
+                Log.d(TAG,""+concentration);
+                resultRef.setText("" + concentration);
             }
         });
 
