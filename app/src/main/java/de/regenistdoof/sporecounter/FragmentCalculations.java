@@ -13,11 +13,13 @@ import android.widget.TextView;
 // In this case, the fragment displays simple text based on the page
 public class FragmentCalculations extends Fragment{
 
-    private int newValue = 0;
 
-    EditText numberOfSquaresRef, countedCellsRef;
+    public static EditText numberOfSquaresRef, countedCellsRef;
     TextView resultRef;
     Button calculate;
+    String TAG = "sporecounter";
+
+
 
     public static FragmentCalculations newInstance(int page) {
         FragmentCalculations fragCalc = new FragmentCalculations();
@@ -40,12 +42,11 @@ public class FragmentCalculations extends Fragment{
         countedCellsRef = (EditText) view.findViewById(R.id.counted_cells);
         calculate = (Button) view.findViewById(R.id.calculate);
 
-
-calculate.setOnClickListener(new View.OnClickListener() {
+        calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newValue = ((MainActivity)getActivity()).getLastcount();
-                Log.d("sporecounter", "fragcalc value: " + newValue);
+                // newValue = ((MainActivity)getActivity()).getLastcount();
+                // Log.d("sporecounter", "fragcalc value: " + newValue);
 
                 int numberOfSquares = Integer.parseInt(numberOfSquaresRef.getText().toString());
                 int countedCells = Integer.parseInt(countedCellsRef.getText().toString());
@@ -56,6 +57,13 @@ calculate.setOnClickListener(new View.OnClickListener() {
         });
 
         return view;
+    }
+
+
+
+    public void updateCall(int count){
+        Log.d(TAG, "fragcalc value: " + count);
+        countedCellsRef.setText(""+count);
     }
 }
 

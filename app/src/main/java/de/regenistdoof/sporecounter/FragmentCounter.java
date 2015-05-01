@@ -28,6 +28,8 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
     boolean swipe = false;
     String TAG = "sporecounter";
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,8 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
         layout = (LinearLayout) view.findViewById(R.id.layout);
         layout.setOnClickListener(this);
         counter = (TextView) view.findViewById(R.id.counter);
+
+
 
         final GestureDetector gesture = new GestureDetector(getActivity(),
                 new GestureDetector.SimpleOnGestureListener() {
@@ -102,6 +106,7 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
              count++;
              counter.setText(Integer.toString(count));
              ((MainActivity)getActivity()).setLastCount(count);
+
          }
      }
 

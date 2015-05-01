@@ -1,6 +1,7 @@
 package de.regenistdoof.sporecounter;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
@@ -11,27 +12,30 @@ public class MainActivity extends FragmentActivity {
 
     ViewPager viewPager;
 
-    private int lastCount;
+    SampleFragmentPagerAdapter adapter;
 
-    public int getLastcount() {
-        return this.lastCount;
+    private FragmentCalculations fragcalc;
+
+    // get latest count from FragmentCounter and call updateCall method in FragmentCalculations
+    public void setLastCount(int count) {
+        ((FragmentCalculations)fragcalc).updateCall(count);
     }
 
-    public void setLastCount(int newValue){
-        this.lastCount = newValue;
-    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fragcalc = new FragmentCalculations();
+
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-
-        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(),
-                MainActivity.this));
-
+        adapter = new SampleFragmentPagerAdapter(getSupportFragmentManager(), MainActivity.this);
+        viewPager.setAdapter(adapter);
 
 
         // Give the SlidingTabLayout the ViewPager
