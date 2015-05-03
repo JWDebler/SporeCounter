@@ -14,4 +14,9 @@
     <string name="unit">x 10^4</string>
     <string name="dilution_factor_explanation">(1 if no dye is used)</string>
     <string name="number_of_squares_explanation">(outer 4 x 4 squares)</string>
+    <string-array name="cells">
+        <item>x 10^4</item>
+        <item>x 10^5</item>
+        <item>x 10^6</item>
+    </string-array>
 </resources>

@@ -2,23 +2,31 @@ package de.regenistdoof.sporecounter;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v7.internal.widget.AdapterViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 // In this case, the fragment displays simple text based on the page
-public class FragmentCalculations extends Fragment{
+public class FragmentCalculations extends Fragment implements AdapterViewCompat.OnItemSelectedListener{
 
 
     public static EditText numberOfSquaresRef, countedCellsRef, dilutionRef;
     TextView resultRef;
     Button calculate;
     String TAG = "sporecounter";
-    final double ten_k = 10000;
+    public int ten_to_the = 10000;
+    public int numberOfSquares;
+    public int countedCells;
+    public int dilutionFactor;
+    public double concentration;
+
 
 
 
@@ -45,29 +53,68 @@ public class FragmentCalculations extends Fragment{
         dilutionRef = (EditText) view.findViewById(R.id.dilution_factor);
         calculate = (Button) view.findViewById(R.id.calculate);
 
+        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.cells, R.layout.spinner_layout);
+        adapter.setDropDownViewResource(R.layout.spinner_layout);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                String selected = parent.getItemAtPosition(position).toString();
+
+                if (selected.equals("x 10^4")){
+                    ten_to_the = 10000;
+                    calculate();
+                }
+                if (selected.equals("x 10^5")){
+                    ten_to_the = 100000;
+                    calculate();
+                }
+                if (selected.equals("x 10^6")){
+                    ten_to_the = 1000000;
+                    calculate();
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // newValue = ((MainActivity)getActivity()).getLastcount();
-                // Log.d("sporecounter", "fragcalc value: " + newValue);
-
-                int numberOfSquares = Integer.parseInt(numberOfSquaresRef.getText().toString());
-                int countedCells = Integer.parseInt(countedCellsRef.getText().toString());
-                int dilutionFactor = Integer.parseInt(dilutionRef.getText().toString());
-                double concentration = ((countedCells * ten_k)/ (numberOfSquares * dilutionFactor))/10000;
-                Log.d(TAG,""+concentration);
-                resultRef.setText("" + concentration);
+                calculate();
             }
         });
 
         return view;
     }
 
+    //performs the actual calculations
+public void calculate(){
+    numberOfSquares = Integer.parseInt(numberOfSquaresRef.getText().toString());
+    countedCells = Integer.parseInt(countedCellsRef.getText().toString());
+    dilutionFactor = Integer.parseInt(dilutionRef.getText().toString());
+    concentration = ((countedCells * 10000.00)/ (numberOfSquares * dilutionFactor))/ten_to_the;
 
+    resultRef.setText("" + concentration);
+}
 
     public void updateCall(int count){
-        Log.d(TAG, "fragcalc value: " + count);
         countedCellsRef.setText(""+count);
+    }
+
+    @Override
+    public void onItemSelected(AdapterViewCompat<?> adapterViewCompat, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterViewCompat<?> adapterViewCompat) {
+
     }
 }
 

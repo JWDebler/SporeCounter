@@ -123,18 +123,6 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/unit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="fill_vertical|right"
-        android:gravity="center"
-        android:text="@string/unit"
-        android:textSize="20sp"
-        android:layout_toEndOf="@+id/result"
-        android:layout_alignBaseline="@+id/result"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/dilution_factor_explanation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -163,6 +151,14 @@
         android:id="@+id/addToList"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_toEndOf="@+id/result"
+        android:layout_alignBaseline="@+id/result"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
