@@ -1,7 +1,9 @@
 package de.regenistdoof.sporecounter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -27,6 +29,7 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
     View view;
     boolean swipe = false;
     String TAG = "sporecounter";
+    Vibrator vibrator;
 
 
 
@@ -43,7 +46,7 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
         layout = (LinearLayout) view.findViewById(R.id.layout);
         layout.setOnClickListener(this);
         counter = (TextView) view.findViewById(R.id.counter);
-
+        vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
 
         final GestureDetector gesture = new GestureDetector(getActivity(),
@@ -68,6 +71,7 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
                                 Log.d(TAG, "swipe down");
                                 resetCounter();
                             }
+
 
                         } catch (Exception e) {
                         }
@@ -99,6 +103,9 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
     @Override
     public void onClick(View v) {
 
+
+
+
          if (swipe) {
              counter.setText("0");
              swipe = false;
@@ -106,9 +113,11 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
              count++;
              counter.setText(Integer.toString(count));
              ((MainActivity)getActivity()).setLastCount(count);
-
+             vibrator.vibrate(30);
          }
      }
+
+
 
 
     @Override
