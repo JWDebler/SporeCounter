@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:clickable="true">
 
 
     <TextView
@@ -60,10 +61,23 @@
     <Button
         android:id="@+id/calculate"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_gravity="center"
         android:text="@string/button_calculate"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/selector"
         android:layout_below="@+id/number_of_squares"
+        android:layout_margin="10dp"
+        android:elegantTextHeight="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="Add to List"
+        android:background="@drawable/selector"
+        android:layout_margin="10dp"
+        android:id="@+id/addToList"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
 
@@ -144,13 +158,7 @@
         android:layout_toEndOf="@id/number_of_squares"
         android:layout_alignBaseline="@+id/number_of_squares" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add to List"
-        android:id="@+id/addToList"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+
 
     <Spinner
         android:layout_width="wrap_content"

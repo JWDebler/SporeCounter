@@ -16,9 +16,16 @@ public class MainActivity extends FragmentActivity {
 
     private FragmentCalculations fragcalc;
 
+    public int counterValue;
+
+
     // get latest count from FragmentCounter and call updateCall method in FragmentCalculations
     public void setLastCount(int count) {
         ((FragmentCalculations)fragcalc).updateCall(count);
+        counterValue = count;
+    }
+    public int getCounterValue(){
+        return this.counterValue;
     }
 
 
@@ -28,6 +35,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         fragcalc = new FragmentCalculations();

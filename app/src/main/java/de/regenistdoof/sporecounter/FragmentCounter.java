@@ -7,6 +7,7 @@ import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,17 +32,23 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
     String TAG = "sporecounter";
     Vibrator vibrator;
 
-
+    public static final String KEY_COUNTER = "counterValue";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        Log.d(TAG,"onCreate");
+                }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(KEY_COUNTER, Integer.toString(count));
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        Log.d(TAG, "onCreateView");
         view = inflater.inflate(R.layout.fragment_counter, container, false);
         layout = (LinearLayout) view.findViewById(R.id.layout);
         layout.setOnClickListener(this);
@@ -49,13 +56,15 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
         vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
 
+       if (savedInstanceState != null){
+           count = Integer.parseInt(savedInstanceState.getString(KEY_COUNTER));
+           counter.setText(Integer.toString(count));
+       }
+
+
         final GestureDetector gesture = new GestureDetector(getActivity(),
                 new GestureDetector.SimpleOnGestureListener() {
 
-                    @Override
-                    public boolean onSingleTapUp(MotionEvent e) {
-                        return false;
-                    }
 
                     @Override
                     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
@@ -82,6 +91,13 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    vibrator.vibrate(30);
+
+                }
+
                 return gesture.onTouchEvent(event);
             }
         });
@@ -98,12 +114,11 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
         swipe = true;
         counter.setText(Integer.toString(count));
         ((MainActivity)getActivity()).setLastCount(count);
+
     }
 
     @Override
     public void onClick(View v) {
-
-
 
 
          if (swipe) {
@@ -112,10 +127,12 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
          } else {
              count++;
              counter.setText(Integer.toString(count));
-             ((MainActivity)getActivity()).setLastCount(count);
-             vibrator.vibrate(30);
+             ((MainActivity) getActivity()).setLastCount(count);
+            // vibrator.vibrate(30);
+
          }
-     }
+
+    }
 
 
 
@@ -132,7 +149,10 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
 
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
+
+        vibrator.vibrate(30);
         return false;
+
     }
 
     @Override
