@@ -38,7 +38,7 @@ package de.regenistdoof.sporecounter;
  * the user's scroll progress.
  * <p>
  * To use the component, simply add it to your view hierarchy. Then in your
- * {@link android.app.Activity} or {@link android.support.v4.app.Fragment} call
+ * {@link android.app.Activity} or {@link android.support.v4.app} call
  * {@link #setViewPager(ViewPager)} providing it the ViewPager this layout is being used for.
  * <p>
  * The colors can be customized in two ways. The first and simplest is to provide an array of colors
@@ -65,7 +65,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     private static final int TITLE_OFFSET_DIPS = 24;
     private static final int TAB_VIEW_PADDING_DIPS = 16;
-    private static final int TAB_VIEW_TEXT_SIZE_SP = 12;
+    private static final int TAB_VIEW_TEXT_SIZE_SP = 13;
 
     private int mTitleOffset;
 

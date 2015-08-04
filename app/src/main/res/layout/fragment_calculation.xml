@@ -69,104 +69,103 @@
         android:layout_below="@+id/number_of_squares"
         android:layout_margin="10dp"
         android:elegantTextHeight="false" />
+    <!--
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="35dp"
+           android:text="Add to List"
+           android:background="@drawable/selector"
+           android:layout_margin="10dp"
+           android:id="@+id/addToList"
+           android:layout_alignParentBottom="true"
+           android:layout_centerHorizontal="true" />
+    -->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:text="Add to List"
-        android:background="@drawable/selector"
-        android:layout_margin="10dp"
-        android:id="@+id/addToList"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+       <EditText
+           android:id="@+id/counted_cells"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="fill_vertical"
+           android:width="60dp"
+           android:gravity="center"
+           android:inputType="number"
+           android:text="@string/counted_cells_default"
+           android:textSize="20sp"
+           android:layout_centerHorizontal="true"
+           android:selectAllOnFocus="true" />
 
+       <EditText
+           android:id="@+id/dilution_factor"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="fill_vertical"
+           android:width="60dp"
+           android:gravity="center"
+           android:inputType="number"
+           android:text="@string/dilution_factor_default"
+           android:textSize="20sp"
+           android:layout_centerHorizontal="true"
+           android:layout_below="@+id/counted_cells"
+           android:selectAllOnFocus="true" />
 
-    <EditText
-        android:id="@+id/counted_cells"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="fill_vertical"
-        android:width="60dp"
-        android:gravity="center"
-        android:inputType="number"
-        android:text="@string/counted_cells_default"
-        android:textSize="20sp"
-        android:layout_centerHorizontal="true"
-        android:selectAllOnFocus="true" />
+       <EditText
+           android:id="@+id/number_of_squares"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="fill_vertical"
+           android:width="60dp"
+           android:gravity="center"
+           android:inputType="number"
+           android:text="@string/number_of_squares_default"
+           android:textSize="20sp"
+           android:layout_centerHorizontal="true"
+           android:layout_below="@+id/dilution_factor"
+           android:selectAllOnFocus="true" />
 
-    <EditText
-        android:id="@+id/dilution_factor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="fill_vertical"
-        android:width="60dp"
-        android:gravity="center"
-        android:inputType="number"
-        android:text="@string/dilution_factor_default"
-        android:textSize="20sp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/counted_cells"
-        android:selectAllOnFocus="true" />
+       <TextView
+           android:id="@+id/result"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center"
+           android:width="100dp"
+           android:gravity="center"
+           android:text="@string/result_default"
+           android:textSize="20sp"
+           android:layout_below="@+id/calculate"
+           android:layout_centerHorizontal="true"
+           android:digits="3"
+           android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/number_of_squares"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="fill_vertical"
-        android:width="60dp"
-        android:gravity="center"
-        android:inputType="number"
-        android:text="@string/number_of_squares_default"
-        android:textSize="20sp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/dilution_factor"
-        android:selectAllOnFocus="true" />
+       <TextView
+           android:id="@+id/dilution_factor_explanation"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="fill_vertical|right"
+           android:gravity="center"
+           android:text="@string/dilution_factor_explanation"
+           android:textSize="15sp"
+           android:layout_alignBaseline="@+id/dilution_factor"
+           android:layout_toEndOf="@id/dilution_factor" />
 
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:width="100dp"
-        android:gravity="center"
-        android:text="@string/result_default"
-        android:textSize="20sp"
-        android:layout_below="@+id/calculate"
-        android:layout_centerHorizontal="true"
-        android:digits="3"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/dilution_factor_explanation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="fill_vertical|right"
-        android:gravity="center"
-        android:text="@string/dilution_factor_explanation"
-        android:textSize="15sp"
-        android:layout_alignBaseline="@+id/dilution_factor"
-        android:layout_toEndOf="@id/dilution_factor" />
-
-    <TextView
-        android:id="@+id/number_of_squares_explanation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="fill_vertical|right"
-        android:gravity="center"
-        android:text="@string/number_of_squares_explanation"
-        android:textSize="15sp"
-        android:layout_toEndOf="@id/number_of_squares"
-        android:layout_alignBaseline="@+id/number_of_squares" />
-
+       <Spinner
+           android:id="@+id/number_of_squares_explanation"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="fill_vertical|right"
+           android:gravity="center"
+           android:textSize="15sp"
+           android:layout_toEndOf="@id/number_of_squares"
+           android:layout_alignBaseline="@+id/number_of_squares" />
 
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:layout_toEndOf="@+id/result"
-        android:layout_alignBaseline="@+id/result"
-        android:textStyle="bold" />
+
+       <Spinner
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/spinner"
+           android:layout_toEndOf="@+id/result"
+           android:layout_alignBaseline="@+id/result"
+           android:textStyle="bold" />
 
 
-</RelativeLayout>
+   </RelativeLayout>

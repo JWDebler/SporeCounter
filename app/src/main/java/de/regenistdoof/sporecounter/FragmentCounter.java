@@ -37,7 +37,7 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG,"onCreate");
+ //       Log.d(TAG,"onCreate");
                 }
 
     @Override
@@ -48,7 +48,7 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView");
+ //       Log.d(TAG, "onCreateView");
         view = inflater.inflate(R.layout.fragment_counter, container, false);
         layout = (LinearLayout) view.findViewById(R.id.layout);
         layout.setOnClickListener(this);
@@ -73,11 +73,11 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
 
                         try {   //swipe up
                             if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MIN_DISTANCE && e1.getY() > e2.getY()){
-                                Log.d(TAG, "swipe up");
+ //                               Log.d(TAG, "swipe up");
                                 resetCounter();
                             }   //swipe down
                             else if ((Math.abs(e1.getY() - e2.getY()) > SWIPE_MIN_DISTANCE && e2.getY() > e1.getY())){
-                                Log.d(TAG, "swipe down");
+  //                              Log.d(TAG, "swipe down");
                                 resetCounter();
                             }
 
@@ -126,6 +126,7 @@ public class FragmentCounter extends Fragment implements View.OnClickListener,Ge
              swipe = false;
          } else {
              count++;
+ //            Log.d(TAG,"counting");
              counter.setText(Integer.toString(count));
              ((MainActivity) getActivity()).setLastCount(count);
             // vibrator.vibrate(30);

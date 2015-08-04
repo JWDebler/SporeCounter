@@ -23,6 +23,7 @@ public class FragmentCalculations extends Fragment implements AdapterViewCompat.
     Button calculate;
     String TAG = "sporecounter";
     public int ten_to_the = 10000;
+    public int squareType = 1;
     public int numberOfSquares;
     public int countedCells;
     public int dilutionFactor;
@@ -54,10 +55,35 @@ public class FragmentCalculations extends Fragment implements AdapterViewCompat.
         dilutionRef = (EditText) view.findViewById(R.id.dilution_factor);
         calculate = (Button) view.findViewById(R.id.calculate);
 
+        Spinner number_of_squares_explanation = (Spinner) view.findViewById(R.id.number_of_squares_explanation);
         Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.cells, R.layout.spinner_layout);
-        adapter.setDropDownViewResource(R.layout.spinner_layout);
-        spinner.setAdapter(adapter);
+
+        ArrayAdapter<CharSequence> cellsAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.cells, R.layout.spinner_layout);
+        cellsAdapter.setDropDownViewResource(R.layout.spinner_layout);
+        ArrayAdapter<CharSequence> squaresAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.squares, R.layout.squares_spinner_layout);
+        squaresAdapter.setDropDownViewResource(R.layout.spinner_layout);
+        spinner.setAdapter(cellsAdapter);
+        number_of_squares_explanation.setAdapter(squaresAdapter);
+        number_of_squares_explanation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                String selected = parent.getItemAtPosition(position).toString();
+
+                if (selected.equals("outer 4 x 4 squares")){
+                    squareType = 1;
+                    //calculate();
+                }
+                if (selected.equals("inner 5 x 5 squares")){
+                    squareType = 2;
+                    //calculate();
+                }
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
@@ -99,7 +125,12 @@ public void calculate(){
     numberOfSquares = Integer.parseInt(numberOfSquaresRef.getText().toString());
     countedCells = Integer.parseInt(countedCellsRef.getText().toString());
     dilutionFactor = Integer.parseInt(dilutionRef.getText().toString());
-    concentration = ((countedCells * 10000.00)/ (numberOfSquares * dilutionFactor))/ten_to_the;
+    if (squareType == 2){
+        concentration = (((25 / numberOfSquares) * countedCells * 10000.00) / dilutionFactor)/ten_to_the;
+    }
+    else {
+        concentration = ((countedCells * 10000.00)/ (numberOfSquares * dilutionFactor))/ten_to_the;
+    }
 
     resultRef.setText("" + concentration);
 }
