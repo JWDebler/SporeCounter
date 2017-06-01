@@ -126,10 +126,12 @@ public void calculate(){
     countedCells = Integer.parseInt(countedCellsRef.getText().toString());
     dilutionFactor = Integer.parseInt(dilutionRef.getText().toString());
     if (squareType == 2){
-        concentration = (((25 / numberOfSquares) * countedCells * 10000.00) / dilutionFactor)/ten_to_the;
+        concentration = Math.round(((((25.00 / numberOfSquares) * countedCells * 10000.00) / dilutionFactor)/ten_to_the)*100.0)/100.0;
+        //concentration = (((25.00 / numberOfSquares) * countedCells * 10000.00) / dilutionFactor)/ten_to_the;
     }
     else {
-        concentration = ((countedCells * 10000.00)/ (numberOfSquares * dilutionFactor))/ten_to_the;
+        concentration = Math.round((((countedCells * 10000.00)/ (numberOfSquares * dilutionFactor))/ten_to_the)*100.0)/100.0;
+        //concentration = ((countedCells * 10000.00)/ (numberOfSquares * dilutionFactor))/ten_to_the;
     }
 
     resultRef.setText("" + concentration);
