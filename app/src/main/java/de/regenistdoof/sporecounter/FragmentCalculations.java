@@ -89,16 +89,16 @@ public class FragmentCalculations extends Fragment implements AdapterViewCompat.
                                        int position, long id) {
                 String selected = parent.getItemAtPosition(position).toString();
 
-                if (selected.equals("x 10^4")){
-                    ten_to_the = 10000;
-                    calculate();
-                }
                 if (selected.equals("x 10^5")){
                     ten_to_the = 100000;
                     calculate();
                 }
                 if (selected.equals("x 10^6")){
                     ten_to_the = 1000000;
+                    calculate();
+                }
+                if (selected.equals("x 10^7")){
+                    ten_to_the = 10000000;
                     calculate();
                 }
 
@@ -126,19 +126,19 @@ public void calculate(){
     countedCells = Integer.parseInt(countedCellsRef.getText().toString());
     dilutionFactor = Integer.parseInt(dilutionRef.getText().toString());
     if (squareType == 2){
-        concentration = Math.round(((((25.00 / numberOfSquares) * countedCells * 10000.00) / dilutionFactor)/ten_to_the)*100.0)/100.0;
+        concentration = Math.round(((((25.00 / numberOfSquares) * countedCells * 10000.00) / dilutionFactor)/ten_to_the)*100.00)/100.00;
         //concentration = (((25.00 / numberOfSquares) * countedCells * 10000.00) / dilutionFactor)/ten_to_the;
     }
     else {
-        concentration = Math.round((((countedCells * 10000.00)/ (numberOfSquares * dilutionFactor))/ten_to_the)*100.0)/100.0;
+        concentration = Math.round((((countedCells * 10000.00)/ (numberOfSquares * dilutionFactor))/ten_to_the)*100.00)/100.00;
         //concentration = ((countedCells * 10000.00)/ (numberOfSquares * dilutionFactor))/ten_to_the;
     }
 
-    resultRef.setText("" + concentration);
+    resultRef.setText(String.valueOf(concentration));
 }
 
     public void updateCall(int count){
-        countedCellsRef.setText(""+count);
+        countedCellsRef.setText(String.valueOf(count));
     }
 
     @Override

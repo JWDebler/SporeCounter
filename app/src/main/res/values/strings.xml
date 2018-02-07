@@ -7,10 +7,10 @@
     <string name="dilution_factor_default">1</string>
     <string name="result_default">0</string>
     <string name="button_calculate">Calculate</string>
-    <string name="counted_cells">Counted Cells:</string>
+    <string name="counted_cells">Counted Spores:</string>
     <string name="dilution_factor">Dilution Factor:</string>
     <string name="counted_squares"># of squares counted:</string>
-    <string name="result_text">Cells / ml:</string>
+    <string name="result_text">Spores / ml:</string>
     <string name="unit">x 10^4</string>
     <string name="dilution_factor_explanation">(1 if no dye is used)</string>
 
@@ -21,8 +21,8 @@
     </string-array>
 
     <string-array name="cells">
-        <item>x 10^6</item>
         <item>x 10^5</item>
-        <item>x 10^4</item>
+        <item>x 10^6</item>
+        <item>x 10^7</item>
     </string-array>
 </resources>
